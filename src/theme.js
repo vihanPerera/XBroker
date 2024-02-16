@@ -29,16 +29,16 @@
                 main: '#ffffff',
               },
               secondary: {
-                main: '#FFE1CD',
+                main: '#FF7518',
                 default: "#333333"
               },
               neutral: {
                 main: '#7C7B84',
-                default: '#FF7518'
+                default: '#ffffff'
               },
               background: {
                 main: '#F5F5F2',
-                default: '#F6F6F3',
+                default: '#F6F6F3', 
               },
             }),
       },
