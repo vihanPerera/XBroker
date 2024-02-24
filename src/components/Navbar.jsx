@@ -83,7 +83,7 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
             {/* LEFT SIDE */}
             <FlexBetween>
                 <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
-                    <MenuIcon />
+                    <MenuIcon/>
                 </IconButton>
             </FlexBetween>
 

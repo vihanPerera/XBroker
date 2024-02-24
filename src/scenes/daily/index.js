@@ -37,16 +37,6 @@ function Daily() {
       headerName: "Status",
       flex: 1,
     },
-    // {
-    //   field: 'status',
-    //   headerName: 'Status',
-    //   width: 120,
-    //   renderCell: (params) => (
-    //     <Stack direction="row" spacing={1}>
-    //       <Chip label={params.value} color={params.value === 'completed' ? 'primary' : 'secondary'} />
-    //     </Stack>
-    //   ),
-    // },
     {
       field: "asyReference",
       headerName: "Asycuda Reference",
@@ -61,15 +51,13 @@ function Daily() {
 
   return (
     <>
-      <Box m="20px" style={{ display: 'flex', justifyContent: 'space-between',}}>
+      <Box m="1rem 1rem" style={{ display: 'flex', justifyContent: 'space-between',}}>
         <Header title="Clearance List" />
         <Button size='small' sx={{backgroundColor: '#FF7518', color: '#ffffff', '&:hover': { backgroundColor: '#FC6F10'}}}>New Job</Button>
       </Box>
 
-    <Box m="20px">
+    <Box m="0.8rem">
       <Box
-        m="20px 0 0 0"
-        // height="75vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -78,7 +66,8 @@ function Daily() {
             borderBottom: "none",
           },
           "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: theme.palette.secondary.main,
+            backgroundColor: '#FF7518',
+            color: '#ffffff',
             borderBottom: "none",
           },
           "& .MuiDataGrid-virtualScroller": {
