@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Header from '../../components/Header';
 import { Box, Grid, IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import CIVHeader from '../../components/CIVHeader';
@@ -61,10 +60,6 @@ function Customers() {
 
   return (
     <>
-    <Box m="1rem 1rem">
-      <Header title="Commercial Invoice"/>
-    </Box>
-
       <Box m="0.8rem">
         <Grid container spacing={1}>
           {/* Left Hand Side */}

@@ -103,6 +103,7 @@ const navItems = [
     isSidebarOpen,
     setIsSidebarOpen,
     isNonMobile,
+    setActiveItemName,
   }) => {
     const { pathname } = useLocation();
     const [active, setActive] = useState("");
@@ -170,6 +171,7 @@ const navItems = [
                         onClick={() => {
                           navigate(`/${lcText}`);
                           setActive(lcText);
+                          setActiveItemName(text);
                         }}
                         sx={{
                             borderRadius: '4px',

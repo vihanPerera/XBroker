@@ -17,8 +17,9 @@ import InputBase from '@mui/material/InputBase';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import Groups2OutlinedIcon from '@mui/icons-material/Groups2Outlined';
+import Header from './Header';
 
-function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
+function Navbar({ isSidebarOpen, setIsSidebarOpen, activeItemName }) {
 
     const dispatch = useDispatch();
     const theme = useTheme();
@@ -85,6 +86,7 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen }) {
                 <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                     <MenuIcon/>
                 </IconButton>
+                <Header title={activeItemName}/>
             </FlexBetween>
 
             {/* RIGHT SIDE */}

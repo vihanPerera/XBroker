@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../../components/Header';
 import { Box, Button, useTheme, } from "@mui/material";
 import { DataGrid } from '@mui/x-data-grid';
 import { mockDataTeam } from '../../data/mockData';
@@ -51,8 +50,7 @@ function Daily() {
 
   return (
     <>
-      <Box m="1rem 1rem" style={{ display: 'flex', justifyContent: 'space-between',}}>
-        <Header title="Clearance List" />
+      <Box m="1rem 1rem" style={{ display: 'flex', justifyContent: 'end',}}>
         <Button size='small' sx={{backgroundColor: '#FF7518', color: '#ffffff', '&:hover': { backgroundColor: '#FC6F10'}}}>New Job</Button>
       </Box>
 

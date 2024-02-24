@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Header from '../../components/Header';
 import { Box, Grid, Card, CardHeader, CardContent, TextField, Select, MenuItem, FormControl, InputLabel, Button } from "@mui/material";
 import CustomCard from '../../components/CustomCard';
 
@@ -13,10 +12,6 @@ function Dashboard() {
 
   return (
     <>
-    <Box m="1rem 1rem">
-      <Header title="Declaration Header"/>
-    </Box>
-
     <Box m="0.8rem">
       <Card>
         <CardContent>
