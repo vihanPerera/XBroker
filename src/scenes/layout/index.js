@@ -19,7 +19,7 @@ function Layout() {
         setIsSidebarOpen={setIsSidebarOpen}
         setActiveItemName={setActiveItemName}
       />
-      <Box flexGrow={1}>
+      <Box flexGrow={1} pt={{ xs: 7, sm: 8 }}>
         <Navbar
           isSidebarOpen={isSidebarOpen}
           setIsSidebarOpen={setIsSidebarOpen}

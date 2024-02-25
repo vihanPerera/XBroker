@@ -74,20 +74,28 @@ function Navbar({ isSidebarOpen, setIsSidebarOpen, activeItemName }) {
   return (
     <AppBar
         sx={{
-            position: "static",
+            position: "fixed",
             background: "none",
             boxShadow: "none",
-            filter: "blur"
+            filter: "blur",
+            // zIndex: 1300,
+            backdropFilter: "blur(10px)",
         }}>
 
         <Toolbar sx={{ justifyContent: "space-between" }}>
             {/* LEFT SIDE */}
-            <FlexBetween>
+            {/* <FlexBetween>
                 <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
                     <MenuIcon/>
                 </IconButton>
                 <Header title={activeItemName}/>
-            </FlexBetween>
+            </FlexBetween> */}
+            <Box display="flex" alignItems="center" sx={{ marginLeft: isSidebarOpen ? '250px' : '0px' }}>
+              <IconButton onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
+                  <MenuIcon/>
+              </IconButton>
+              <Header title={activeItemName}/>
+            </Box>
 
             {/* RIGHT SIDE */}
             <FlexBetween gap="1rem">
