@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Grid,
@@ -10,24 +10,57 @@ import {
 } from "@mui/material";
 import CustomInvoiceCard from "./CustomInvoiceCard";
 
-const LineItems = ({
-  textFieldValues,
-  handleTextFieldChange,
-  handleAddRow,
-}) => {
-  const hsCode = useRef(null);
-  const lineDescription = useRef(null);
-  const pkgCount = useRef(null);
-  const type = useRef(null);
-  const netWeight = useRef(null);
-  const grossWeight = useRef(null);
+const initialFormData = {
+  hsCode: "",
+  pkgCount: "",
+  type: "",
+  lineDescription: "",
+  marksAndNumbers: "",
+  numbersAndKind: "",
+  containers: "",
+  grossWeight: "",
+  netWeight: "",
+  qty1: "",
+  qty2: "",
+  qty3: "",
+  uom1: "",
+  uom2: "",
+  uom3: "",
+  invoiceValue: "",
+  freightCharges: "",
+  insuranceCharges: "",
+  otherCharges: "",
+  additionalDetails: "",
+  additionalDetails2: "",
+};
 
-  // Function to handle key press event
-  const handleKeyPress = (event, nextRef) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      nextRef.current.focus();
+const LineItemNew = ({ onAdd, editItem, onEdit }) => {
+  const [formData, setFormData] = useState(initialFormData);
+
+  useEffect(() => {
+    if (editItem) {
+      setFormData(editItem);
+    } else {
+      setFormData(initialFormData);
     }
+  }, [editItem]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = () => {
+    if (editItem) {
+      onEdit(formData);
+    } else {
+      onAdd(formData);
+    }
+    setFormData(initialFormData);
+  };
+
+  const handleCancel = () => {
+    setFormData(initialFormData);
   };
 
   return (
@@ -48,12 +81,8 @@ const LineItems = ({
                     size="small"
                     variant="outlined"
                     name="hsCode"
-                    value={textFieldValues.hsCode}
-                    onChange={handleTextFieldChange}
-                    inputRef={hsCode}
-                    onKeyPress={(event) =>
-                      handleKeyPress(event, lineDescription)
-                    }
+                    value={formData.hsCode}
+                    onChange={handleChange}
                   />
                 </Grid>
                 <Grid item xs={6}>
@@ -62,8 +91,9 @@ const LineItems = ({
                     fullWidth
                     size="small"
                     variant="outlined"
-                    inputRef={pkgCount}
-                    onKeyPress={(event) => handleKeyPress(event, type)}
+                    name="pkgCount"
+                    value={formData.pkgCount}
+                    onChange={handleChange}
                   />
                 </Grid>
                 <Grid item xs={6}>
@@ -72,8 +102,9 @@ const LineItems = ({
                     fullWidth
                     size="small"
                     variant="outlined"
-                    inputRef={type}
-                    onKeyPress={(event) => handleKeyPress(event, grossWeight)}
+                    name="type"
+                    value={formData.type}
+                    onChange={handleChange}
                   />
                 </Grid>
               </Grid>
@@ -89,76 +120,21 @@ const LineItems = ({
                     size="small"
                     variant="outlined"
                     name="lineDescription"
-                    value={textFieldValues.lineDescription}
-                    onChange={handleTextFieldChange}
-                    inputRef={lineDescription}
-                    onKeyPress={(event) => handleKeyPress(event, pkgCount)}
+                    value={formData.lineDescription}
+                    onChange={handleChange}
                   />
                 </Grid>
               </Grid>
             </Grid>
-            {/* <Grid item xs={3}>
-              <TextField
-                label="HS Code"
-                fullWidth
-                size="small"
-                variant="outlined"
-                name="hsCode"
-                value={textFieldValues.hsCode}
-                onChange={handleTextFieldChange}
-                inputRef={hsCode}
-                onKeyPress={(event) => handleKeyPress(event, lineDescription)}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <TextField
-                label="Pkg Count"
-                fullWidth
-                size="small"
-                variant="outlined"
-                inputRef={pkgCount}
-                onKeyPress={(event) => handleKeyPress(event, type)}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <TextField
-                label="Type"
-                fullWidth
-                size="small"
-                variant="outlined"
-                inputRef={type}
-                onKeyPress={(event) => handleKeyPress(event, grossWeight)}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <TextField
-                label="Containers"
-                fullWidth
-                size="small"
-                variant="outlined"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Line Description"
-                multiline
-                rows={2}
-                fullWidth
-                size="small"
-                variant="outlined"
-                name="lineDescription"
-                value={textFieldValues.lineDescription}
-                onChange={handleTextFieldChange}
-                inputRef={lineDescription}
-                onKeyPress={(event) => handleKeyPress(event, pkgCount)}
-              /> */}
-            {/* </Grid> */}
             <Grid item xs={4}>
               <TextField
                 label="Marks and Numbers"
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="marksAndNumbers"
+                value={formData.marksAndNumbers}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={4}>
@@ -167,6 +143,9 @@ const LineItems = ({
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="numbersAndKind"
+                value={formData.numbersAndKind}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={4}>
@@ -175,6 +154,9 @@ const LineItems = ({
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="containers"
+                value={formData.containers}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={6} sx={{ marginTop: "18px" }}>
@@ -184,10 +166,8 @@ const LineItems = ({
                 size="small"
                 variant="outlined"
                 name="grossWeight"
-                value={textFieldValues.grossWeight}
-                onChange={handleTextFieldChange}
-                inputRef={grossWeight}
-                onKeyPress={(event) => handleKeyPress(event, netWeight)}
+                value={formData.grossWeight}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={6} sx={{ marginTop: "18px" }}>
@@ -197,9 +177,8 @@ const LineItems = ({
                 size="small"
                 variant="outlined"
                 name="netWeight"
-                value={textFieldValues.netWeight}
-                onChange={handleTextFieldChange}
-                inputRef={netWeight}
+                value={formData.netWeight}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={2} sx={{ marginTop: "18px" }}>
@@ -208,6 +187,9 @@ const LineItems = ({
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="qty1"
+                value={formData.qty1}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={2} sx={{ marginTop: "18px" }}>
@@ -216,6 +198,9 @@ const LineItems = ({
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="uom1"
+                value={formData.uom1}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={2} sx={{ marginTop: "18px" }}>
@@ -224,6 +209,9 @@ const LineItems = ({
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="qty2"
+                value={formData.qty2}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={2} sx={{ marginTop: "18px" }}>
@@ -232,6 +220,9 @@ const LineItems = ({
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="uom2"
+                value={formData.uom2}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={2} sx={{ marginTop: "18px" }}>
@@ -240,6 +231,9 @@ const LineItems = ({
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="qty3"
+                value={formData.qty3}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={2} sx={{ marginTop: "18px" }}>
@@ -248,6 +242,9 @@ const LineItems = ({
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="uom3"
+                value={formData.uom3}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={6} sx={{ marginTop: "18px" }}>
@@ -257,8 +254,8 @@ const LineItems = ({
                 size="small"
                 variant="outlined"
                 name="invoiceValue"
-                value={textFieldValues.invoiceValue}
-                onChange={handleTextFieldChange}
+                value={formData.invoiceValue}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={6} sx={{ marginTop: "18px" }}>
@@ -267,6 +264,9 @@ const LineItems = ({
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="freightCharges"
+                value={formData.freightCharges}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={6}>
@@ -275,6 +275,9 @@ const LineItems = ({
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="insuranceCharges"
+                value={formData.insuranceCharges}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={6}>
@@ -283,10 +286,32 @@ const LineItems = ({
                 fullWidth
                 size="small"
                 variant="outlined"
+                name="otherCharges"
+                value={formData.otherCharges}
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12} sx={{ marginTop: "14px" }}>
-              <CustomInvoiceCard />
+              <CustomInvoiceCard
+                additionalDetails={formData.additionalDetails}
+                additionalDetails2={formData.additionalDetails2}
+                onDetailsChange={(e) =>
+                  handleChange({
+                    target: {
+                      name: "additionalDetails",
+                      value: e.target.value,
+                    },
+                  })
+                }
+                onDetails2Change={(e) =>
+                  handleChange({
+                    target: {
+                      name: "additionalDetails2",
+                      value: e.target.value,
+                    },
+                  })
+                }
+              />
             </Grid>
           </Grid>
           <Box display="flex" justifyContent="flex-end" mt={3}>
@@ -297,7 +322,7 @@ const LineItems = ({
                 width: 100,
                 "&:hover": { backgroundColor: "#FC6F10" },
               }}
-              onClick={handleAddRow}
+              onClick={handleSubmit}
             >
               Add
             </Button>
@@ -310,6 +335,7 @@ const LineItems = ({
                 backgroundColor: "transparent",
                 "&:hover": { borderColor: "#FF7518" },
               }}
+              onClick={handleCancel}
             >
               Cancel
             </Button>
@@ -320,4 +346,4 @@ const LineItems = ({
   );
 };
 
-export default LineItems;
+export default LineItemNew;
