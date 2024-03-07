@@ -13,6 +13,7 @@ import Performance from "./scenes/performance/index"
 import Monthly from "./scenes/monthly";
 import BreakDown from "./scenes/breakdown";
 import Admin from "./scenes/admin";
+import ProductPreview from "./scenes/productPreview";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
               <Route path="/breakdown" element={<BreakDown/>} />
               <Route path="/admin" element={<Admin/>} />
             </Route>
+            <Route path="/product-preview" element={<ProductPreview />} />
           </Routes>
         </ThemeProvider>
       </BrowserRouter>

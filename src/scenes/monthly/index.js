@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Grid } from "@mui/material";
 import CIVHeader from '../../components/CIVHeader';
 import FooterBtn from '../../components/FooterBtn';
-import LineItemsNew from '../../components/LineItemNew';
+import LineItems from '../../components/LineItems';
 import LineItemGrid from '../../components/LineItemsGrid';
 
 function Monthly() {
@@ -44,7 +44,7 @@ const handleDeleteLineItem = (id) => {
 
           {/* Right Hand Side */}
           <Grid item xs={4.2}>
-            <LineItemsNew onAdd={handleAddLineItem} onEdit={handleEditLineItem} editItem={editItem}/>
+            <LineItems onAdd={handleAddLineItem} onEdit={handleEditLineItem} editItem={editItem}/>
           </Grid>
         </Grid>
       </Box>

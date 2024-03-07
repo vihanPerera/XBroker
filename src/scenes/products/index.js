@@ -4,7 +4,6 @@ function Product() {
 
   return (
     <>
-    
     </>
 );
 
