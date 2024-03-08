@@ -24,7 +24,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-function InvoicePreviewBody({ data }) {
+function InvoicePreviewBody({ data, itemNumber }) {
   const theme = useTheme();
 
   const backgroundColor = theme.palette.mode === "dark" ? "#C6C6C6" : "#333333";
@@ -49,12 +49,24 @@ function InvoicePreviewBody({ data }) {
                 aria-expanded={expanded}
                 aria-label="show more"
               >
-                <ExpandMoreIcon sx={{ fontSize: "34px" }} />
+                <ExpandMoreIcon sx={{ fontSize: "34px", marginLeft: "4px" }} />
               </ExpandMore>
             }
             title={
               <Grid container spacing={1}>
-                <Grid item xs={6} md={6}>
+                <Grid item xs={2} md={0.5}>
+                  <Typography
+                    mt={1}
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: 500,
+                      paddingLeft: "8px",
+                    }}
+                  >
+                    {itemNumber}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6} md={7}>
                   <Box display="flex" mt={1}>
                     <Typography sx={{ fontSize: "16px", color: "#36815D" }}>
                       {data.hsCode}
@@ -76,42 +88,63 @@ function InvoicePreviewBody({ data }) {
                     </Box>
                   </Box>
                 </Grid>
-                <Grid item xs={2} md={2}>
-                  <Typography sx={{ fontSize: "16px", fontWeight: 500 }}>
+                <Grid item xs={2} md={1.5}>
+                  <Typography
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: 500,
+                      textAlign: "right",
+                    }}
+                  >
                     {data.netWeight}
                   </Typography>
                   <Typography
                     mt="2px"
                     sx={{
                       fontSize: "13px",
+                      textAlign: "right",
                       color: theme.palette.neutral.main,
                     }}
                   >
                     Net Weight
                   </Typography>
                 </Grid>
-                <Grid item xs={2} md={2}>
-                  <Typography sx={{ fontSize: "16px", fontWeight: 500 }}>
+                <Grid item xs={2} md={1.5}>
+                  <Typography
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: 500,
+                      textAlign: "right",
+                    }}
+                  >
                     {data.grossWeight}
                   </Typography>
                   <Typography
                     mt="2px"
                     sx={{
                       fontSize: "13px",
+                      textAlign: "right",
                       color: theme.palette.neutral.main,
                     }}
                   >
                     Gross Weight
                   </Typography>
                 </Grid>
-                <Grid item xs={2} md={2}>
-                  <Typography sx={{ fontSize: "16px", fontWeight: 500 }}>
+                <Grid item xs={2} md={1.5}>
+                  <Typography
+                    sx={{
+                      fontSize: "16px",
+                      fontWeight: 500,
+                      textAlign: "right",
+                    }}
+                  >
                     {data.invoiceValue}
                   </Typography>
                   <Typography
                     mt="2px"
                     sx={{
                       fontSize: "13px",
+                      textAlign: "right",
                       color: theme.palette.neutral.main,
                     }}
                   >
@@ -143,6 +176,50 @@ function InvoicePreviewBody({ data }) {
                       }}
                     >
                       <Typography sx={{ fontSize: "16px", fontWeight: 500 }}>
+                        {itemNumber}
+                      </Typography>
+                      <Typography
+                        mt="4px"
+                        sx={{
+                          fontSize: "13px",
+                          color: theme.palette.neutral.main,
+                        }}
+                      >
+                        Item Number
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4} md={2}>
+                    <Box
+                      sx={{
+                        borderRight: "1px solid #ccc",
+                        paddingRight: "8px",
+                        marginRight: "40px",
+                      }}
+                    >
+                      <Typography sx={{ fontSize: "16px", fontWeight: 500 }}>
+                        {data.hsCode}
+                      </Typography>
+                      <Typography
+                        mt="4px"
+                        sx={{
+                          fontSize: "13px",
+                          color: theme.palette.neutral.main,
+                        }}
+                      >
+                        HS Code
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4} md={2}>
+                    <Box
+                      sx={{
+                        borderRight: "1px solid #ccc",
+                        paddingRight: "8px",
+                        marginRight: "40px",
+                      }}
+                    >
+                      <Typography sx={{ fontSize: "16px", fontWeight: 500 }}>
                         {data.pkgCount}
                       </Typography>
                       <Typography
@@ -156,7 +233,51 @@ function InvoicePreviewBody({ data }) {
                       </Typography>
                     </Box>
                   </Grid>
-                  <Grid item xs={4} md={2}>
+                  <Grid item xs={8} md={6}>
+                    <Box
+                      sx={{
+                        borderRight: "1px solid #ccc",
+                        paddingRight: "8px",
+                        marginRight: "40px",
+                      }}
+                    >
+                      <Typography sx={{ fontSize: "16px", fontWeight: 500 }}>
+                        {data.lineDescription}
+                      </Typography>
+                      <Typography
+                        mt="4px"
+                        sx={{
+                          fontSize: "13px",
+                          color: theme.palette.neutral.main,
+                        }}
+                      >
+                        Line Description
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4} md={2} mt={2}>
+                    <Box
+                      sx={{
+                        borderRight: "1px solid #ccc",
+                        paddingRight: "8px",
+                        marginRight: "40px",
+                      }}
+                    >
+                      <Typography sx={{ fontSize: "16px", fontWeight: 500 }}>
+                        {data.type}
+                      </Typography>
+                      <Typography
+                        mt="4px"
+                        sx={{
+                          fontSize: "13px",
+                          color: theme.palette.neutral.main,
+                        }}
+                      >
+                        Type
+                      </Typography>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={4} md={2} mt={2}>
                     <Box
                       sx={{
                         borderRight: "1px solid #ccc",
@@ -178,7 +299,7 @@ function InvoicePreviewBody({ data }) {
                       </Typography>
                     </Box>
                   </Grid>
-                  <Grid item xs={4} md={2}>
+                  <Grid item xs={4} md={2} mt={2}>
                     <Box
                       sx={{
                         borderRight: "1px solid #ccc",
@@ -200,7 +321,7 @@ function InvoicePreviewBody({ data }) {
                       </Typography>
                     </Box>
                   </Grid>
-                  <Grid item xs={4} md={2}>
+                  <Grid item xs={4} md={2} mt={2}>
                     <Box
                       sx={{
                         borderRight: "1px solid #ccc",
@@ -222,7 +343,7 @@ function InvoicePreviewBody({ data }) {
                       </Typography>
                     </Box>
                   </Grid>
-                  <Grid item xs={4} md={2}>
+                  <Grid item xs={4} md={2} mt={2}>
                     <Box
                       sx={{
                         borderRight: "1px solid #ccc",
@@ -244,7 +365,7 @@ function InvoicePreviewBody({ data }) {
                       </Typography>
                     </Box>
                   </Grid>
-                  <Grid item xs={4} md={2}>
+                  <Grid item xs={4} md={2} mt={2}>
                     <Box
                       sx={{
                         borderRight: "1px solid #ccc",

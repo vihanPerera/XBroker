@@ -39,8 +39,8 @@ function ProductPreview() {
             <Typography variant='h5' sx={{ fontWeight: 500 }}>Line Item Details</Typography>
         </Box>
 
-        {lineItems.map((item) => (
-            <InvoicePreviewBody key={item.id} data={item} />
+        {lineItems.map((item, index) => (
+            <InvoicePreviewBody key={item.id} data={item} itemNumber={index + 1}/>
         ))}
   
         <Box m="0.8rem" style={{ height: '8px'}}>
